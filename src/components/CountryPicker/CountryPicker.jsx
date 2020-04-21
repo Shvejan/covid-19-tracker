@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NativeSelect, FormControl } from "@material-ui/core";
 import styles from "./CountryPicker.module.css";
 import { countries } from "../../api";
+
 const CountryPicker = ({ handleCountryChange }) => {
   const [fetchCountries, setFetchCountries] = useState([]);
   useEffect(() => {
@@ -10,20 +11,44 @@ const CountryPicker = ({ handleCountryChange }) => {
     };
     fetchApi();
   }, [setFetchCountries]);
+
+  const btnclk = (con) => {
+    handleCountryChange(con);
+  };
   return (
-    <FormControl className={styles.formControl}>
-      <NativeSelect
-        defaultValue=""
-        onChange={(e) => handleCountryChange(e.target.value)}
-      >
-        <option value="">Global</option>
-        {fetchCountries.map((c) => (
-          <option key={c} value={c}>
-            {c}
-          </option>
-        ))}
-      </NativeSelect>
-    </FormControl>
+    <React.Fragment>
+      <FormControl className={styles.formControl}>
+        <NativeSelect
+          defaultValue=""
+          onChange={(e) => handleCountryChange(e.target.value)}
+        >
+          <option value="">Country...</option>
+          {fetchCountries.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </NativeSelect>
+      </FormControl>
+      <div className="row">
+        <button className={styles.btnn} onClick={() => handleCountryChange("")}>
+          Global
+        </button>
+        <button
+          className={styles.btnn}
+          onClick={() => handleCountryChange("India")}
+        >
+          India
+        </button>
+        <button
+          className={styles.btnn}
+          onClick={() => handleCountryChange("US")}
+        >
+          USA
+        </button>
+      </div>
+    </React.Fragment>
   );
 };
 export default CountryPicker;
+//{<button onClick={btnclk("India")}>India</button>}

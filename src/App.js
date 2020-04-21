@@ -17,13 +17,23 @@ class App extends Component {
     const data = await fetchData(c);
     this.setState({ data: data, country: c });
   };
+  heading(c) {
+    if (c.length) {
+      return `Data of ${c}`;
+    } else {
+      return `Cases WorldWide`;
+    }
+  }
   render() {
     const { data, country } = this.state;
     return (
       <div className={styles.container}>
         <img src={covdimg} alt="COVID-19" className={styles.image} />
-        <Cards data={data} />
+        <br />
+        <br />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <h1>{this.heading(country)}</h1>
+        <Cards data={data} />
         <Chart data={data} country={country} />
       </div>
     );

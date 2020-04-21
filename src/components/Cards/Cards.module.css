@@ -13,6 +13,9 @@
 .recovered {
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
 }
+.active {
+  border-bottom: 10px solid rgba(233, 138, 30, 0.5);
+}
 @media (max-width: 720px) {
   .card {
     margin: 2% 0 !important;
